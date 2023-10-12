@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal" >
-<ImageView android:id="@+id/icon"
-    android:layout_width="100dp"
-    android:layout_height="75dp"
-    android:layout_marginRight="3dp"
-    android:src="@drawable/ic_launcher"/>
+    android:orientation="horizontal"
+    android:background="@drawable/custom_list_item">
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="100dp"
+        android:layout_height="75dp"
+        android:padding="15sp"
+        android:layout_marginLeft="-8sp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,22 +19,20 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/label"
+            android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#22ffff00"
-            android:text="label1"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="15sp"
+            android:fontFamily="@font/times_new_roman"/>
 
         <TextView
-            android:id="@+id/label2"
+            android:id="@+id/phone"
             android:layout_width="match_parent"
             android:layout_height="75dp"
-            android:background="#22ffff00"
-            android:text="label2"
-            android:textColor="#000000"
-            android:textSize="20sp" />
-
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/times_new_roman"/>
     </LinearLayout>
-
 </LinearLayout>
