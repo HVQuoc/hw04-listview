@@ -68,6 +68,7 @@ public class MainActivity extends Activity {
     String [] phones = {item.randomPhoneNumber(),"0867137365","0867137365","0867137365","0867137365"};
     Integer[] thumbnails = {item.randomThumnails(), R.drawable.pic2, R.drawable.pic3,R.drawable.pic4,R.drawable.pic5 };
 
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
