@@ -14,6 +14,8 @@ import android.widget.TextView;
 import android.widget.Button;
 import android.widget.AdapterView;
 
+import java.util.ArrayList;
+
 // a static class as a random info machine
 class RandomDataMachine {
     // random repos
@@ -68,7 +70,10 @@ public class MainActivity extends Activity {
     String [] phones = {item.randomPhoneNumber(),"0867137365","0867137365","0867137365","0867137365"};
     Integer[] thumbnails = {item.randomThumnails(), R.drawable.pic2, R.drawable.pic3,R.drawable.pic4,R.drawable.pic5 };
 
-    
+    //List user:
+    ArrayList<RandomDataMachine> listRandom;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,10 +90,14 @@ public class MainActivity extends Activity {
         txtChosen = (TextView) findViewById(R.id.txtChosen);
         list = (ListView) findViewById(R.id.list);
 
-        // the arguments of the custom adapter are: activityContex, layout-to-be-inflated, labels, icons
-        CustomIconLabelAdapter adapter = new CustomIconLabelAdapter(this, R.layout.custom_list_view, names, phones, thumbnails);
-        // bind intrinsic ListView to custom adapter
-        list.setAdapter(adapter);
+        listRandom = new ArrayList<>();
+
+
+
+//         the arguments of the custom adapter are: activityContex, layout-to-be-inflated, labels, icons
+//        CustomIconLabelAdapter adapter = new CustomIconLabelAdapter(this, R.layout.custom_list_view, names, phones, thumbnails);
+//        // bind intrinsic ListView to custom adapter
+//        list.setAdapter(adapter);
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -96,28 +105,41 @@ public class MainActivity extends Activity {
                 txtChosen.setText(names[position]);
             }
         });
+
+        btnGen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String textNumberItem= edtLine.getText().toString();
+                int valueNumberItem= Integer.parseInt(textNumberItem);
+                listRandom= new ArrayList<>();
+                for(int i=0;i<valueNumberItem;i++)
+                    {
+                        listRandom.add(new RandomDataMachine());
+                    }
+            }
+        });
     }//onCreate
 }
 
-class CustomIconLabelAdapter extends ArrayAdapter<String> {
-    Context context; Integer[] thumbnails; String[] items; String[] item2s;
-    public CustomIconLabelAdapter( Context context, int layoutToBeInflated, String[] items,String[] item2s, Integer[] thumbnails) {
-        super(context,R.layout.custom_list_view, items);
-        this.context = context;
-        this.thumbnails = thumbnails;
-        this.items = items;
-        this.item2s = item2s;
-    }
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = ((Activity) context).getLayoutInflater();
-        View row = inflater.inflate(R.layout.custom_list_view, null);
-        TextView name = (TextView) row.findViewById(R.id.name);
-        TextView phone = (TextView) row.findViewById(R.id.phone);
-        ImageView icon = (ImageView) row.findViewById(R.id.icon);
-        name.setText(items[position]);
-        phone.setText(item2s[position]);
-        icon.setImageResource(thumbnails[position]);
-        return (row);
-    }
-} // CustomAdapter
+//class CustomIconLabelAdapter extends ArrayAdapter<String> {
+//    Context context; Integer[] thumbnails; String[] items; String[] item2s;
+//    public CustomIconLabelAdapter( Context context, int layoutToBeInflated, String[] items,String[] item2s, Integer[] thumbnails) {
+//        super(context,R.layout.custom_list_view, items);
+//        this.context = context;
+//        this.thumbnails = thumbnails;
+//        this.items = items;
+//        this.item2s = item2s;
+//    }
+//    @Override
+//    public View getView(int position, View convertView, ViewGroup parent) {
+//        LayoutInflater inflater = ((Activity) context).getLayoutInflater();
+//        View row = inflater.inflate(R.layout.custom_list_view, null);
+//        TextView name = (TextView) row.findViewById(R.id.name);
+//        TextView phone = (TextView) row.findViewById(R.id.phone);
+//        ImageView icon = (ImageView) row.findViewById(R.id.icon);
+//        name.setText(items[position]);
+//        phone.setText(item2s[position]);
+//        icon.setImageResource(thumbnails[position]);
+//        return (row);
+//    }
+//} // CustomAdapter
