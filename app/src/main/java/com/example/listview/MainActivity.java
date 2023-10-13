@@ -13,6 +13,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Button;
 import android.widget.AdapterView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 // a static class as a random info machine
 class RandomDataMachine {
@@ -62,11 +65,14 @@ public class MainActivity extends Activity {
     Spinner spnPage;
     TextView txtChosen;
     ListView list;
-    RandomDataMachine item = new RandomDataMachine();
+//    RandomDataMachine item = new RandomDataMachine();
     // The n-th row in the list will consist of [icon, label] where icon = thumbnail[n] and label=items[n]
-    String[] names = { item.randomName(), "Nguyen Van B", "Nguyen Van C", "Nguyen Van D" , "Nguyen Van E" };
-    String [] phones = {item.randomPhoneNumber(),"0867137365","0867137365","0867137365","0867137365"};
-    Integer[] thumbnails = {item.randomThumnails(), R.drawable.pic2, R.drawable.pic3,R.drawable.pic4,R.drawable.pic5 };
+//    String[] names = { item.randomName(), "Nguyen Van B", "Nguyen Van C", "Nguyen Van D" , "Nguyen Van E" };
+//    String [] phones = {item.randomPhoneNumber(),"0867137365","0867137365","0867137365","0867137365"};
+//    Integer[] thumbnails = {item.randomThumnails(), R.drawable.pic2, R.drawable.pic3,R.drawable.pic4,R.drawable.pic5 };
+
+    //List user:
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,17 +90,65 @@ public class MainActivity extends Activity {
         txtChosen = (TextView) findViewById(R.id.txtChosen);
         list = (ListView) findViewById(R.id.list);
 
-        // the arguments of the custom adapter are: activityContex, layout-to-be-inflated, labels, icons
-        CustomIconLabelAdapter adapter = new CustomIconLabelAdapter(this, R.layout.custom_list_view, names, phones, thumbnails);
-        // bind intrinsic ListView to custom adapter
-        list.setAdapter(adapter);
 
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+//        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> av, View v, int position, long id) {
+//                txtChosen.setText(names[position]);
+//            }
+//        });
+
+        Context currentContext=this;
+        btnGen.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> av, View v, int position, long id) {
-                txtChosen.setText(names[position]);
+            public void onClick(View view) {
+
+                //Get Number of generate
+                String textNumberItem= edtLine.getText().toString();
+
+                //Convert to Integer
+                int valueNumberItem= Integer.parseInt(textNumberItem);
+
+                // Create List Random of Name, Phone anf Image
+                ArrayList<String>listNameRandom= new ArrayList<String>();
+                ArrayList<String>listPhoneRandom= new ArrayList<String>();
+                ArrayList<Integer>listImgRandom= new ArrayList<Integer>();
+
+                // Create item Object to get Random name, phone and image
+                RandomDataMachine item = new RandomDataMachine();
+
+                // Get and Push data random to ArrayLists.
+                for(int i=0;i<valueNumberItem;i++)
+                {
+                    listNameRandom.add(item.randomName());
+                    listPhoneRandom.add(item.randomPhoneNumber());
+                    listImgRandom.add(item.randomThumnails());
+                }
+
+                // Convert ArrayLists to String[] and Integer[]
+                String[]  nameList = listNameRandom.toArray(new String[listNameRandom.size()]);
+                String[]  phoneList = listPhoneRandom.toArray(new String[listPhoneRandom.size()]);
+                Integer[]  imgList = listImgRandom.toArray(new Integer[listImgRandom.size()]);
+
+                //
+                list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> av, View v, int position, long id) {
+                        txtChosen.setText(nameList[position]);
+                    }
+                });
+
+                //         the arguments of the custom adapter are: activityContex, layout-to-be-inflated, labels, icons
+                CustomIconLabelAdapter adapter = new CustomIconLabelAdapter(currentContext, R.layout.custom_list_view, nameList, phoneList, imgList);
+                // bind intrinsic ListView to custom adapter
+                list.setAdapter(adapter);
+
+
             }
         });
+
+
     }//onCreate
 }
 
