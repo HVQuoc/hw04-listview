@@ -1,58 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity" >
+    tools:context=".MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
 
         <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="GEN"
-            android:textSize="20sp" />
-
-        <EditText
-            android:id="@+id/editTextText"
-            android:layout_width="78dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="text" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="41dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Page"
-            android:textAlignment="textStart"
+            android:id="@+id/btnGen"
+            android:layout_width="60sp"
+            android:layout_height="50sp"
+            android:text="Gen"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:layout_marginLeft="10sp"
+            android:layout_marginRight="5sp"
+            android:fontFamily="@font/times_new_roman"
             android:textStyle="bold" />
 
-        <Spinner
-            android:layout_width="200sp"
-            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/edtLine"
+            android:layout_width="60sp"
+            android:layout_height="40sp"
+            android:inputType="number"
+            android:background="@drawable/custom_edittext"
+            android:textAlignment="center"/>
 
+        <TextView
+            android:id="@+id/txtPage"
+            android:layout_width="wrap_content"
+            android:layout_height="40sp"
+            android:layout_marginLeft="90sp"
+            android:text="Page"
+            android:textSize="20sp"
+            android:layout_marginRight="6sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/times_new_roman"/>
+
+        <Spinner
+            android:id="@+id/spnPage"
+            android:layout_width="100sp"
+            android:layout_height="40sp"
+            android:textAlignment="center"
+            android:background="@drawable/custom_spinner" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/txtMsg"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="You choose: "
-        android:textAlignment="center"
-        android:textColor="#000000"
-        android:textSize="24sp" />
+        android:orientation="horizontal"
+        android:layout_marginTop="20sp"
+        android:layout_marginBottom="10sp">
+
+        <TextView
+            android:id="@+id/txtMsg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10sp"
+            android:textSize="23sp"
+            android:text="You choose: "
+            android:fontFamily="@font/times_new_roman"/>
+
+        <TextView
+            android:id="@+id/txtChosen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="23sp"
+            android:fontFamily="@font/times_new_roman"/>
+    </LinearLayout>
 
     <ListView
-        android:id="@android:id/list"
+        android:id="@+id/list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
+        android:layout_height="match_parent"
+        android:divider="#FFFFA500"
+        android:dividerHeight="1dp"
+        android:layout_marginLeft="15sp"
+        android:layout_marginRight="15sp"/>
 </LinearLayout>
+
+
+
+
